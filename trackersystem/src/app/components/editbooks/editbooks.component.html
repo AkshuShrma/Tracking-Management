@@ -1,0 +1,72 @@
+<div class="outer">
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-2 col-lg-5 col-md-7 offet-lg-4 offset-md-3">
+          <div class="panel border bg-white">
+            <div class="panel-heading">
+              <h3 class="pt-3 font-weight-bold text-info">Edit Books</h3>
+            </div>
+            <div class="panel-body p-3">
+              <form #form="ngForm" (ngSubmit)="ssssss()">
+                <div class="form-group pt-3">
+                  <div class="input-field">
+                    <span class="fa fa-user p-2">Name</span>
+                    <input
+                      type="text"
+                      name="name"
+                      [(ngModel)]="bookForm.name"
+                      placeholder="Name"
+                    />
+                  </div>
+                </div>
+                <div class="form-group pt-3">
+                  <div class="input-field">
+                    <span class="fa fa-user p-2">Author</span>
+                    <input
+                      type="text"
+                      name="author"
+                      [(ngModel)]="bookForm.author"
+                      placeholder="Author"
+                    />
+                  </div>
+                </div>
+                <div class="form-group pt-3">
+                  <div class="input-field">
+                    <span class="fa fa-user p-2">Cost</span>
+                    <input
+                      type="number"
+                      name="cost"
+                      [(ngModel)]="bookForm.cost"
+                      placeholder="Cost"
+                    />
+                  </div>
+                </div>
+                <div class="form-inline fr mt-4">
+                  <button
+                    type="submit"
+                    style="margin-left: 165px"
+                    class="btn btn-info"
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    style="margin-left: 5px"
+                    [routerLink]="['/home']"
+                    class="btn btn-danger"
+                    (click)="cancel()"
+                  >
+                    Cancel
+                  </button>
+                </div>
+                <!-- <div class="text-center text muted">
+                    If U Don't Have Account<a id="forget" routerLink="register"></a>
+                  </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

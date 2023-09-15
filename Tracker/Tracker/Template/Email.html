@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Invitation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .invitation-card {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .invitation-card img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 10px;
+            }
+
+            .invitation-card h2 {
+                color: #333333;
+                font-size: 24px;
+                margin: 0;
+            }
+
+            .invitation-card p {
+                color: #666666;
+                font-size: 16px;
+                margin: 0;
+            }
+
+        .details {
+            text-align: center;
+        }
+
+            .details p {
+                color: #666666;
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+        .btn {
+            display: inline-block;
+            background-color: #333333;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+            .btn:hover {
+                background-color: #555555;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Invitation</h1>
+        <div class="invitation-card">
+            <img src="path/to/image.jpg" alt="Invitation Image">
+            <h2>Recevied by:[receiverUserName]</h2>
+            <p>Perform CRUD in my application </p>
+        </div>
+        <div class="details">
+            <p id="date">[date]</p>
+            <p id="time">[time]</p>`
+            <p>Sended by: [senderUserName]</p>
+        </div>
+        <a class="btn" href="http://localhost:4200/confirmation/[reciverId]/1">Confirm</a>
+        <a class="btn" href="http://localhost:4200/invitationConfirmation/[reveiverId]/2">Reject</a>
+    </div>
+</body>
+
+</html>

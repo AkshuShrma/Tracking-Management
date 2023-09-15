@@ -1,0 +1,125 @@
+   <div class="outer">
+  <div class="container">
+    <br />
+    <h1 class="mb-3 text-success">Books List</h1>
+    <div className="col-6" style="margin-left: 700px">
+      <button class="btn btn-primary" [routerLink]="['/add']" (click)="addTable()">Add Books</button>
+    </div>
+    <br />
+    <div *ngIf="books$ | async as value">
+      <div *ngIf="value.length == 0">
+        <h2 class="text-danger">No data</h2>
+      </div>
+      <div>
+        <table *ngIf="value.length != 0" class="table w-75 table-bordered table-stripped table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Author</th>
+              <th>Cost</th>
+              <th class="table w-25">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let book of value">
+              <td>{{ book.name }}</td>
+              <td>{{ book.author }}</td>
+              <td>{{ book.cost }}</td>
+              <td>
+                <button [routerLink]="['/edit', book.bookId]" class="btn btn-info">Edit Book</button>
+                <button class="btn btn-danger m-2" (click)="openDeleteModal(book.bookId)">
+                  Delete
+                </button>
+                <button class="btn btn-primary m-2" (click)="openTrackingModal(book.userId,book.bookId)">
+                  Tracking Detail
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<!-- /////Modal///// -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">Are u sure to delete this item?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-danger" (click)="delete()">
+          Confirm Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="tracking" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Tracking Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table w-100 table-bordered table-stripped table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Operation</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody style="overflow-y: scroll;">
+            <tr *ngFor="let trackingDetail of trackingUser?.trackingDetails">
+              <td>{{trackingDetail.dataChangeUser.userName}}</td>
+              <td *ngIf="trackingDetail.userActions==1" class="text-center">Add</td>
+              <td *ngIf="trackingDetail.userActions==2" class="text-center">Update</td>
+              <td *ngIf="trackingDetail.userActions==3" class="text-center">Delete</td>
+              <td>{{trackingDetail.trackingDate | date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div *ngFor="let data of user | keyvalue">
+  <h2>User Details</h2>
+  <p>Name: {{ data.inivitedTable.user }}</p>
+  <p>Email: {{ user.user }}</p>
+</div> -->
+<!-- <div ng-repeat="(key,value) in user">
+  <h1>{{key}}</h1>
+</div> -->
+
+<!-- <div *ngFor="let property of User.user | keyvalue">
+  <h2 class="text-center">{{ property.key }}: {{ property.value }}</h2>
+</div> -->
+
+<!-- <div *ngFor="let property of User.user | keyvalue">
+  <div *ngIf="property.key == 'name' || property.key == 'email' || property.key == 'address'">
+    <h2 class="text-center">{{ property.key }}: {{ property.value }}</h2>
+  </div>
+</div> -->

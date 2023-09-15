@@ -1,0 +1,76 @@
+<div class="row m-2">
+  <div class="col-6">
+    <h2 class="text-center text-success">Send Invitations</h2>
+  </div>
+  <div class="col-6">
+    <div class="col-5 offset-6">
+      <button class="btn btn-success" (click)="showInvitation()">
+        Create Invitation/Hide Invitation
+      </button>
+    </div>
+  </div>
+</div>
+<!-- invitation  -->
+<div class="m-auto mt-5 pt-5" style="max-width: 35vw" [style]="displayInvitation">
+  <div class="card text-center">
+    <div class="card-header bg-info text-white">Invitation Modal</div>
+    <div class="card-body">
+      <form #form="ngForm">
+        <div class="col-12">
+          <div class="row mt-2">
+            <div class="col-12">
+              <input type="text" name="displayName" [(ngModel)]="displayName.Name" placeholder="Search"
+                (keyup)="search($event)" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </form>
+      <div *ngIf="displayNameIsNot">
+        <div *ngFor="let result of results$ | async" (click)="mouseover($event, result.id)" class="form-group">
+          <input class="form-control" [value]="result.name" disabled />
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-body-secondary">
+      <div class="m-auto col-5">
+        <button type="submit" (click)="sendeInvitation()" class="btn btn-success">
+          Send Invitation
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Display Invitation -->
+<div class="w-50 m-auto mt-5">
+  <table class="table table-striped table-hover text-center">
+    <thead class="bg-primary text-white">
+      <tr>
+        <td>Name</td>
+        <td>Status</td>
+        <td>Action</td>
+        <td>Action Status</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invite of invites">
+        <td>{{ invite.user2.userName }}</td>
+        <td>
+          <a *ngIf="invite.userStatus == 1" class="btn btn-outline-primary">Approved</a>
+          <a *ngIf="invite.userStatus == 2" class="btn btn-outline-danger">Rejected</a>
+          <a *ngIf="invite.userStatus == 3" class=" btn btn-outline-warning text-dark">Pending</a>
+        </td>
+        <td>
+          <button class=" btn btn-info" (click)="updateAction(invite.reciverId,1)">Enable</button>
+          <button class="btn btn-success" (click)="updateAction(invite.reciverId,2)">Disable</button>
+          <button class="btn btn-danger" (click)="updateAction(invite.reciverId,3)">Delete</button>
+        </td>
+        <td>
+          <p *ngIf="invite.userActions == 1" class=" btn btn-outline-dark">Enable</p>
+          <p *ngIf="invite.userActions == 2" class="btn btn-outline-dark p-2">Disable</p>
+          <p *ngIf="invite.userActions == 3" class="btn-outline-dark p-2">Delete</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
